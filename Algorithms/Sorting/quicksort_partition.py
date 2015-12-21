@@ -3,7 +3,7 @@
 
 ################################################################################
 # Quicksort 1 - Partition
-# Ulr:https://www.hackerrank.com/challenges/quicksort1
+# URL:https://www.hackerrank.com/challenges/quicksort1
 ################################################################################
 
 
