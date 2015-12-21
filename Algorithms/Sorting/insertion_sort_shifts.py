@@ -3,7 +3,7 @@
 
 ################################################################################
 # Running Time of Algorithms
-# Ulr: https://www.hackerrank.com/challenges/runningtime/submissions/code/15904487
+# URL: https://www.hackerrank.com/challenges/runningtime/submissions/code/15904487
 ################################################################################
 
 
