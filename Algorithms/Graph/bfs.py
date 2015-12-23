@@ -1,23 +1,31 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+################################################################################
+# Breadth First Search: Shortest Reach
+# URL: https://www.hackerrank.com/challenges/bfsshortreach
+# Result: Test Case #2 & Test Case # 4 timeout
+################################################################################
+
 
 def BFS(start, vertices, edges):
     global path
     # if not vertices[start]:
-    neighbors = [start]
-    # if edges:
-    while neighbors:
-        v = neighbors.pop()
-        vertices[start] = True
+    neighbors = []
+    if edges:
         for edge in edges:
-            if v in edge:
-                index = edge.index(v)
+            if start in edge:
+                index = edge.index(start)
                 the_other = edge[1-index]
                 if not vertices[the_other]:
-                    path[the_other] = path[v]+6
                     neighbors.append(the_other)
+                    if path[the_other] > path[start]+6:
+                        path[the_other] = path[start]+6
                     edges = [_ for _ in edges if _ != edge]
+            # Mark start as visited.
+            vertices[start] = True
+    for neighbor in neighbors:
+        BFS(neighbor, vertices, edges)
 
 test_cases = int(raw_input())
 result = []
@@ -28,7 +36,7 @@ if 1 <= test_cases <= 10:
         node_number, edge_number = inputs[0], inputs[1]
         vertices = [False]
         path = [0]
-        for i in range(node_number):
+        for i in range(1, node_number+1):
             # Mark every vertex as unvisited.
             vertices.append(False)
 
@@ -40,7 +48,7 @@ if 1 <= test_cases <= 10:
         # The distance between start vertex and itself is 0.
         edges = []
         # contrains
-        if 2 <= node_number <= 1000 and 1 <= edge_number <= ((node_number)*((node_number)-1))/2:
+        if 2 <= node_number <= 1000 and 1 <= edge_number <= ((node_number)*((node_number)-1))/2.0:
             for e in range(edge_number):
                 # store all edges in a list.
                 edges.append([int(i) for i in raw_input().strip().split(" ")])
@@ -55,5 +63,7 @@ if 1 <= test_cases <= 10:
         path = [_ for _ in path if _ != 0]
         result.append(path)
 
+for p in result:
+    print str(p)[1:-1].replace(",", "")
 for p in result:
     print str(p)[1:-1].replace(",", "")
